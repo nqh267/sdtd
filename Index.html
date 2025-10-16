@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sơ Đồ Tư Duy: Mạng Máy Tính Và Cuộc Sống</title>
+  <script src="https://unpkg.com/gojs/release/go.js"></script>
+  <style>
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; font-family: Arial, sans-serif; }
+    #mindmapDiv { width: 100%; height: 100%; background: #f4f6f8; }
+  </style>
+</head>
+<body>
+  <div id="mindmapDiv"></div>  <script>
+    const $ = go.GraphObject.make;
+    const diagram = $(go.Diagram, "mindmapDiv", {
+      initialAutoScale: go.Diagram.Uniform,
+      contentAlignment: go.Spot.Center,
+      layout: $(go.TreeLayout, { angle: 0, layerSpacing: 80 }),
+      'undoManager.isEnabled': true
+    });
+
+    diagram.nodeTemplate =
+      $(go.Node, 'Auto',
+        $(go.Shape, 'RoundedRectangle', { fill: '#d1e9ff', strokeWidth: 0 }),
+        $(go.TextBlock, { margin: 8, editable: false, wrap: go.TextBlock.WrapFit, width: 200 }, new go.Binding('text', 'text'))
+      );
+
+    diagram.model = new go.TreeModel([
+      { key: 0, text: 'Mạng máy tính với cuộc sống' },
+
+      // Phần 1: Internet làm thay đổi thế giới
+      { key: 1, parent: 0, text: '1. Internet làm thay đổi thế giới' },
+      { key: 11, parent: 1, text: 'a) Mở rộng phương thức học tập' },
+      { key: 111, parent: 11, text: '• Học trực tuyến ở mọi nơi\n• Tài liệu, bài giảng được số hoá\n• Có kho học liệu mở, video, âm thanh, văn bản' },
+      { key: 112, parent: 11, text: '• Có khoá học miễn phí hoặc trả phí\n• Giúp học sinh chủ động học tập' },
+
+      { key: 12, parent: 1, text: 'b) Mở rộng phương thức làm việc' },
+      { key: 121, parent: 12, text: '• Làm việc từ xa, tiết kiệm thời gian\n• Tăng năng suất, giảm kẹt xe' },
+      { key: 122, parent: 12, text: '• Phát triển thương mại điện tử, thanh toán online' },
+
+      { key: 13, parent: 1, text: 'c) Nâng cao chất lượng cuộc sống' },
+      { key: 131, parent: 13, text: '• Cung cấp thông tin nhanh, đa dạng\n• Kết nối, giao lưu, học hỏi' },
+      { key: 132, parent: 13, text: '• Phát triển dịch vụ thông minh: y tế, hành chính, robot' },
+
+      // Phần 2: Tác động tiêu cực
+      { key: 2, parent: 0, text: '2. Tác động tiêu cực của Internet' },
+      { key: 21, parent: 2, text: 'a) Tác hại thường gặp' },
+      { key: 211, parent: 21, text: '• Lười suy nghĩ, nghiện Internet\n• Thông tin xấu, lừa đảo, bắt nạt qua mạng' },
+
+      { key: 22, parent: 2, text: 'b) Phần mềm độc hại' },
+      { key: 221, parent: 22, text: '• Virus, sâu máy tính, gián điệp\n• Mất dữ liệu, lộ thông tin cá nhân' },
+
+      // Phần 3: Cách phòng tránh và bảo vệ dữ liệu
+      { key: 3, parent: 0, text: '3. Cách phòng tránh & bảo vệ dữ liệu' },
+      { key: 31, parent: 3, text: 'a) Tránh phần mềm độc hại' },
+      { key: 311, parent: 31, text: '• Cài phần mềm diệt virus, cập nhật hệ thống\n• Không mở email hoặc link lạ' },
+      { key: 312, parent: 31, text: '• Chỉ tải phần mềm đáng tin cậy\n• Dùng mật khẩu mạnh, không dùng USB lạ' },
+
+      { key: 32, parent: 3, text: 'b) Bảo vệ dữ liệu cá nhân' },
+      { key: 321, parent: 32, text: '• Không gửi thông tin cá nhân qua email\n• Không đăng nhập ở máy công cộng' },
+      { key: 322, parent: 32, text: '• Sao lưu dữ liệu quan trọng\n• Dùng xác thực hai bước' },
+
+      // Kết luận
+      { key: 4, parent: 0, text: 'Kết luận' },
+      { key: 41, parent: 4, text: '• Internet mang lại nhiều lợi ích nhưng cũng có nguy cơ.\n→ Cần sử dụng Internet an toàn, thông minh và có trách nhiệm.' }
+    ]);
+
+    diagram.toolManager.mouseWheelBehavior = go.ToolManager.WheelZoom;
+  </script></body>
+</html>
